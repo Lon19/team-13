@@ -75,6 +75,9 @@ def create_json():
 			"male_colour": male_colour,
 			"female_colour": female_colour,
 			"total_colour": total_colour,
+			"male_value": male_value,
+			"female_value": female_value,
+			"total_value": total_value
 		}
 
 	print("Done!")
