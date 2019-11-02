@@ -23,12 +23,10 @@ def load_all():
 
       for d in data:
         f.write(d)
-
   f.close()
 
 
-
-def schedule():
+def load():
   schedule.every().day.at(start).do(load_all)
   while True:
     schedule.run_pending()
@@ -36,4 +34,4 @@ def schedule():
 
 
 if __name__ == "__main__":
-    schedule()
+    load()
