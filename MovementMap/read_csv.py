@@ -56,9 +56,13 @@ def create_json():
 		female_value_list = []
 
 		for obj in objects:
-			if obj["GEOGRAPHY_CODE"] == geo_code and "All" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Male":
+			if obj["GEOGRAPHY_CODE"] == geo_code and "18" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Male":
 				male_value_list.append(int(obj["OBS_VALUE"]))
-			elif obj["GEOGRAPHY_CODE"] == geo_code and "All" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Female":
+			elif obj["GEOGRAPHY_CODE"] == geo_code and "25" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Male":
+				male_value_list.append(int(obj["OBS_VALUE"]))
+			elif obj["GEOGRAPHY_CODE"] == geo_code and "18" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Female":
+				female_value_list.append(int(obj["OBS_VALUE"]))
+			elif obj["GEOGRAPHY_CODE"] == geo_code and "25" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Female":
 				female_value_list.append(int(obj["OBS_VALUE"]))
 				# Exploits the fact that Female always comes after Male (i.e. both values found)
 				break
@@ -67,17 +71,10 @@ def create_json():
 		female_value = sum(female_value_list)
 		total_value = male_value + female_value
 
-		male_colour = math.floor(255 * male_value / male_max)
-		female_colour = math.floor(255 * female_value / female_max)
-		total_colour = math.floor(255 * total_value / total_max)
-
 		colours_dict[geo_code] = {
-			"male_colour": male_colour,
-			"female_colour": female_colour,
-			"total_colour": total_colour,
 			"male_value": male_value,
 			"female_value": female_value,
-			"total_value": total_value
+			"total_value": total_value,
 		}
 
 	print("Done!")
