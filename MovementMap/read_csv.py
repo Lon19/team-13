@@ -2,10 +2,12 @@ import csv
 import math
 
 
-def get_data(file):
-	with open(file) as data_file:
-		reader = csv.DictReader(data_file)
-		objects = [row for row in reader]
+def get_data(files):
+	objects = []
+	for file in files:
+		with open(file) as data_file:
+			reader = csv.DictReader(data_file)
+			objects.extend([row for row in reader])
 
 	print("Done!")
 	print("Found " + str(len(objects)) + " objects.")
@@ -21,7 +23,7 @@ def create_json():
 	"""
 
 	colours_dict = {}
-	objects = get_data('data.csv')
+	objects = get_data(["data 1.csv", "data 2.csv", "data 3.csv", "data 4.csv"])
 
 	# Get list of GeoCodes
 	geo_code_list = []
@@ -56,8 +58,10 @@ def create_json():
 		for obj in objects:
 			if obj["GEOGRAPHY_CODE"] == geo_code and "All" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Male":
 				male_value_list.append(int(obj["OBS_VALUE"]))
-			elif obj["GEOGRAPHY_CODE"] == geo_code and "All" in obj["AGE_NAME"] and obj ["GENDER_NAME"] == "Female":
+			elif obj["GEOGRAPHY_CODE"] == geo_code and "All" in obj["AGE_NAME"] and obj["GENDER_NAME"] == "Female":
 				female_value_list.append(int(obj["OBS_VALUE"]))
+				# Exploits the fact that Female always comes after Male (i.e. both values found)
+				break
 
 		male_value = sum(male_value_list)
 		female_value = sum(female_value_list)
@@ -74,6 +78,7 @@ def create_json():
 		}
 
 	print("Done!")
+	print(len(colours_dict.keys()))
 	return colours_dict
 
 
