@@ -74,6 +74,7 @@ def create_json():
 		}
 
 	print("Done!")
+	return colours_dict
 
 
 if __name__ == "__main__":
