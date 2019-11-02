@@ -82,13 +82,13 @@
 
           <div class="row" id="ward">
               <div class="col-4">
-                <p>Ward</p>
+<!--                <p>Postcode</p>-->
               </div>
 
               <div class="col-8">
             <form action="submit" method="get"/>
                 <div class="form-group">
-                  <input class="form-control" type="text" name="ward-name" id="ward-name" placeholder="Ward Name">
+                  <input class="form-control" type="text" id='postcode' name="ward-name" id="ward-name" placeholder="Postcode">
                 </div>
 
               </div>
@@ -97,7 +97,7 @@
           <div class="row justify-content-center" id="submit-row">
               <form action="submit" method="post">
                 {% csrf_token %}
-                <button type="submit" name='form_submit' class="btn btn-primary">Submit</button>
+                <button type="submit" id='button' name='form_submit' class="btn btn-primary">Submit</button>
               </form>
             </div>
 
@@ -120,8 +120,7 @@
           <div id='map'></div>
             <div class='map-overlay' id='features' style="height: 10em;"><h2>Claimant Values by Wards in the UK</h2><div id='pd'><p>Hover over a ward!</p></div></div>
 
-          <div id='map_django'>
-            {{ map }}
+          <div id='map_django' name="{{ map }}">
           </div>
         </div>
 

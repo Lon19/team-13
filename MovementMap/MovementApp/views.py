@@ -8,9 +8,12 @@ import geopy
 import json
 from name_dict import get_name_dict
 
+dict = {'map': 'total'}
+
 
 def index(request):
-    return render(request, 'MovementApp/index.html')
+    # dict = {'map': 'total'}
+    return render(request, 'MovementApp/index.html', context=dict)
 
 
 def search(request):
@@ -18,24 +21,28 @@ def search(request):
 
 
 def submit(request):
+    global dict
     ward_name = request.GET.get('ward-name', 'Failed').capitalize()
     # if ukpostcodeutils.validation.is_valid_postcode(ward_name):
-    # geolocator = Nominatim(user_agent="MovementApp")
-    # location = geolocator.geocode(ward_name)
-    # coord = (location.latitude, location.longitude)
+    geolocator = Nominatim(user_agent="MovementApp")
+    location = geolocator.geocode(ward_name)
+    coord =   location.latitude, location.longitude
     male_bool = request.GET.get('male', 'False')
     female_bool = request.GET.get('female', 'False')
-    if male_bool and female_bool is True:
+    print("q" + male_bool + 'q')
+    print(type(male_bool), male_bool, type(female_bool), female_bool)
+    if male_bool == 'True' and female_bool == 'True':
         dict = {'map': 'total'}
-    elif male_bool is True:
+    elif male_bool == 'True' and female_bool == 'False':
+        print('Male!!!')
         dict = {'map': 'male'}
-    elif female_bool is True:
+    elif female_bool == 'True' and male_bool == 'False':
         dict = {'map': 'female'}
     else:
         dict = {'map': 'total'}
 
     return_dict = get_name_dict()
-    my_dict = {"ward_data": return_dict[ward_name]}
+    # my_dict = {"ward_data": return_dict[ward_name]}
     return render(request, 'MovementApp/index.html', context=dict)
 
 
