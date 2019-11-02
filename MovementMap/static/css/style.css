@@ -1,5 +1,6 @@
 * {
     font-family: "Poppins";
+    /*border: 1px solid black;*/
 }
 
 html {
@@ -51,4 +52,5 @@ body {
 
 #map-img {
     width: 100%;
+    border: 1px solid black;
 }

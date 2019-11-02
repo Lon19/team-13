@@ -1,14 +1,19 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
-  
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href={% static "css/style.css" %}/>
 
     <title>Movement To Work</title>
 
@@ -22,7 +27,7 @@
 
             <!-- Logo -->
             <div class="row-auto" id="logo-row">
-                <img src="src/images/logo.png" class="img-fluid" alt="Responsive image" id="logo">
+                <img src={% static "images/logo.png"%} class="img-fluid" alt="Responsive image" id="logo">
             </div>
 
             <!-- Form -->
@@ -31,14 +36,17 @@
                 <p>Parameters</p>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio1" name="groupOfMaterialRadios" class="custom-control-input">
                     <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio2" name="groupOfMaterialRadios" class="custom-control-input">
                     <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
                 </div>
-
+            <form action="submit" method="post">
+              {% csrf_token %}
+              <button type="submit" name='form_submit' class="btn btn-outline-success waves-effect">Submit</button>
+            </form>
             </div>
             <!-- currently hard coded radio buttons -->
 
@@ -46,9 +54,10 @@
 
         <!-- Map Column-->
         <div class="col-10" id="map-col">
-            <img src="src/images/map_template.png" class="img-fluid" alt="Responsive image" id="map-img">
+          <!-- Temporary data mashing -->
+          <img src={% static "images/map_template.png"%} class="img-fluid" alt="Responsive image" id="map-img">
+          {{ rubbish_data }}
         </div>
-
     </div>
 </div>
 </body>
