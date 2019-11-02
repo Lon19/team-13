@@ -15,50 +15,117 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href={% static "css/style.css" %}/>
 
-    <title>Movement To Work</title>
+    <link rel="stylesheet" href={% static "css/map.css" %}/>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/bundle.js' %}"></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="shortcut icon" type="image/png" href={% static "images/favicon.ico" %}/>
+    <title>Map Visualiser</title>
 
 </head>
 <body>
 <div class="container-fluid fill-height">
-    <div class="row" id="container-row">
+      <div class="row" id="container-row">
 
         <!-- Header/Form Column-->
-        <div class="col-2" id="header-form-col">
+        <div class="col-2" id="header-form-col" style="background: url('{% static 'images/SidebarBacking.png' %}')">
 
             <!-- Logo -->
             <div class="row-auto" id="logo-row">
-                <img src={% static "images/logo.png"%} class="img-fluid" alt="Responsive image" id="logo">
+              <a href="/"><img src={% static "images/logo.png"%} class="img-fluid" alt="Responsive image" id="logo"></a>
             </div>
 
             <!-- Form -->
-            <div class="row-auto" id="form-row">
+          <div class="row" id="form-row">
+            <div class="row" id="sex">
+              <div class="col-4">
+                <p>Sex</p>
+              </div>
 
-                <p>Parameters</p>
+              <div class="col-8">
+              <form action="submit" method="get"/>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="male" checked name="male" value="True">
+                  <label class="custom-control-label" for="male">Male</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="female" checked name="female" value="True">
+                  <label class="custom-control-label" for="female">Female</label>
+                </div>
 
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio1" name="groupOfMaterialRadios" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio2" name="groupOfMaterialRadios" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
-                </div>
-            <form action="submit" method="post">
-              {% csrf_token %}
-              <button type="submit" name='form_submit' class="btn btn-outline-success waves-effect">Submit</button>
-            </form>
+              </div>
             </div>
-            <!-- currently hard coded radio buttons -->
 
-        </div>
+<!--            <div class="row" id="age">-->
+<!--              <div class="col-4">-->
+<!--                <p>Age</p>-->
+<!--              </div>-->
+
+<!--              <div class="col-8">-->
+
+<!--                <div class="custom-control custom-checkbox">-->
+<!--                  <input type="checkbox" class="custom-control-input" id="1824" checked name="params[]" value="1824">-->
+<!--                  <label class="custom-control-label" for="1824">18-24</label>-->
+<!--                </div>-->
+<!--                <div class="custom-control custom-checkbox">-->
+<!--                  <input type="checkbox" class="custom-control-input" id="2529" checked name="params[]" value="2529">-->
+<!--                  <label class="custom-control-label" for="2529">25-29</label>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+
+          <div class="row" id="ward">
+              <div class="col-4">
+                <p>Ward</p>
+              </div>
+
+              <div class="col-8">
+            <form action="submit" method="get"/>
+                <div class="form-group">
+                  <input class="form-control" type="text" name="ward-name" id="ward-name" placeholder="Ward Name">
+                </div>
+
+              </div>
+            </div>
+
+          <div class="row justify-content-center" id="submit-row">
+              <form action="submit" method="post">
+                {% csrf_token %}
+                <button type="submit" name='form_submit' class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+
+          <div class="col-auto overflow-hidden" id="data">
+            <ul>
+            <!-- Temporary data mashing -->
+
+              {% for key, index in ward_data.items %}
+                <li>{{ key }}: {{ index }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          </div>
+
+            <!-- currently hard coded radio buttons -->
+    </div>
 
         <!-- Map Column-->
         <div class="col-10" id="map-col">
-          <!-- Temporary data mashing -->
-<!--          <img src={% static "images/map_template.png"%} class="img-fluid" alt="Responsive image" id="map-img">-->
-          {{ rubbish_data }}
+          <div id='map'></div>
+            <div class='map-overlay' id='features' style="height: 10em;"><h2>Claimant Values by Wards in the UK</h2><div id='pd'><p>Hover over a ward!</p></div></div>
+
+          <div id='map_django'>
+            {{ map }}
+          </div>
         </div>
-    </div>
+
+
 </div>
 </body>
 </html>

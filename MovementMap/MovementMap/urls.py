@@ -20,6 +20,9 @@ from MovementApp import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', admin.site.urls),
-    path('', views.index, name='rubbish_data'),
+    path('', views.index, name='ward_data'),
     path('submit', views.submit),
+    path('search/', views.search, name='search'),
+    path('search/submit', views.search_submit),
+    path('', views.index, name='map'),
 ]

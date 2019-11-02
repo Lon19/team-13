@@ -1,3 +1,4 @@
+{% load staticfiles %}
 * {
     font-family: "Poppins";
     /*border: 1px solid black;*/
@@ -40,17 +41,67 @@ body {
     padding: 10px;
 }
 
-#logo-row {
-    height: 12%;
-}
+/*#logo-row {*/
+/*    height: 12%;*/
+/*}*/
 
-#form-row {
-    height: 88%;
-}
+/*#form-row {*/
+/*    height: 76%;*/
+/*}*/
 
+/*#submit-row {*/
+/*  height: 12%;*/
+/*}*/
 /* Map Properties*/
 
 #map-img {
     width: 100%;
     border: 1px solid black;
 }
+
+#sex, #age {
+  padding-top: 50px;
+  padding-left: 10px;
+  margin: 0;
+  align-content: center;
+  display: flex;
+}
+
+#age {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#age > .col-8 {
+  padding-right: 25px;
+}
+
+#ward {
+  padding-right: 0px;
+  padding-top: 20px;
+  margin: 0;
+  align-content: center;
+  display: flex;
+}
+
+#ward > .col-8 {
+  padding-left: 0px;
+  /*padding-left: -10px;*/
+}
+
+#header-form-col {
+  border-right: 2px solid grey;
+}
+
+#submit-row {
+  margin: 0;
+  align-content: center;
+  display: flex;
+  padding-top: 20px;
+  padding-left: 60px;
+}
+
+#data {
+  padding-top: 20px;
+}
+
