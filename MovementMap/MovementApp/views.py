@@ -10,7 +10,7 @@ def index(request):
 
 
 def submit(request):
-    with open('../../wards.json') as f:
+    with open('../wards.json') as f:
       txt = f.read()
     text = json.loads(txt)
     wards = text["features"]
@@ -20,9 +20,11 @@ def submit(request):
                     "Coordinates": dic["geometry"]["coordinates"][0][0]}
         l.append(new_dict)
 
-    result = {'rubbish data': l}
+    result = {'rubbish_data': l}
+    # print(result)
+    print("1")
+    return render(request, 'MovementApp/index.html', context=result)
 
-    return HttpResponseRedirect('/', context=result)
 
 
-
+# submit(0)
