@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-import ukpostcodeutils
-from geopy.geocoders import Nominatim
-import geopy
+# import ukpostcodeutils
+# from geopy.geocoders import Nominatim
+# import geopy
+# import geocoder
 
 # Create your views here.
 import json
@@ -22,19 +23,30 @@ def search(request):
 
 def submit(request):
     global dict
+
     ward_name = request.GET.get('ward-name', 'Failed').capitalize()
     # if ukpostcodeutils.validation.is_valid_postcode(ward_name):
-    geolocator = Nominatim(user_agent="MovementApp")
-    location = geolocator.geocode(ward_name)
-    coord =   location.latitude, location.longitude
+
+    # lat_lng_coords = None
+    # while (lat_lng_coords is None):
+    #   g = geocoder.google(ward_name)
+    #   lat_lng_coords = g.latlng
+    # latitude = lat_lng_coords[0]
+    # longitude = lat_lng_coords[1]
+    # print(latitude, longitude)
+
+    # geolocator = Nominatim(user_agent="MovementApp")
+    # location = geolocator.geocode(ward_name)
+    # coord = location.latitude, location.longitude
+    # print(coord)
     male_bool = request.GET.get('male', 'False')
     female_bool = request.GET.get('female', 'False')
-    print("q" + male_bool + 'q')
-    print(type(male_bool), male_bool, type(female_bool), female_bool)
+    # print("q" + male_bool + 'q')
+    # print(type(male_bool), male_bool, type(female_bool), female_bool)
     if male_bool == 'True' and female_bool == 'True':
         dict = {'map': 'total'}
     elif male_bool == 'True' and female_bool == 'False':
-        print('Male!!!')
+        # print('Male!!!')
         dict = {'map': 'male'}
     elif female_bool == 'True' and male_bool == 'False':
         dict = {'map': 'female'}
