@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href={% static "css/style.css" %}/>
+
+    <title>Movement To Work</title>
+
+</head>
+<body>
+<div class="container-fluid fill-height">
+    <div class="row" id="container-row">
+
+        <!-- Header/Form Column-->
+        <div class="col-3" id="header-form-col">
+
+            <!-- Logo -->
+            <div class="row-auto" id="logo-row">
+                <img src={% static "images/logo.png"%} class="img-fluid" alt="Responsive image" id="logo">
+            </div>
+
+          <div class="row" id="ward">
+              <div class="col-4">
+                <p>Ward</p>
+              </div>
+
+            <div class="col-8">
+            <form action="submit" method="get"/>
+                <div class="form-group">
+                  <input class="form-control" type="text" name="ward-name" id="ward-name" placeholder="Ward Name">
+                </div>
+              </div>
+          </div>
+
+          <div class="row justify-content-center" id="submit-row">
+              <form action="submit" method="post">
+                {% csrf_token %}
+                <button type="submit" name='form_submit' class="btn btn-outline-success waves-effect">Submit</button>
+              </form>
+            </div>
+          </div>
+
+
+        <!-- Map Column-->
+      <div class="col-9" id="map-col">
+<!--        <img src={% static "images/map_template.png"%} class="img-fluid" alt="Responsive image" id="map-img">-->
+        <ul>
+        <!-- Temporary data mashing -->
+
+          {% for key, index in ward_data.items %}
+            <li>{{ key }}: {{ index }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+</div>
+</div>
+</body>
+</html>

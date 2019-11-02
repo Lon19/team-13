@@ -1,0 +1,107 @@
+{% load staticfiles %}
+* {
+    font-family: "Poppins";
+    /*border: 1px solid black;*/
+}
+
+html {
+    background-color: #E4018E;
+    overflow-y: hidden;
+    height: 100%;
+
+}
+
+body {
+    height: 100%;
+    background-size:cover;
+    background-repeat:no-repeat;
+    overflow-y: hidden;
+    margin: 0;
+}
+
+/* Structural Properties */
+.container-fluid {
+    height: 100%;
+    overflow: hidden;
+}
+
+#container-row {
+    height: 100%;
+}
+
+#header-form-col, #map-col {
+    margin-bottom: -9999px;
+    padding-bottom: -9999px;
+    height: 100%;
+}
+
+/* Logo/Form Properties */
+
+#logo {
+    padding: 10px;
+}
+
+/*#logo-row {*/
+/*    height: 12%;*/
+/*}*/
+
+/*#form-row {*/
+/*    height: 76%;*/
+/*}*/
+
+/*#submit-row {*/
+/*  height: 12%;*/
+/*}*/
+/* Map Properties*/
+
+#map-img {
+    width: 100%;
+    border: 1px solid black;
+}
+
+#sex, #age {
+  padding-top: 50px;
+  padding-left: 10px;
+  margin: 0;
+  align-content: center;
+  display: flex;
+}
+
+#age {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#age > .col-8 {
+  padding-right: 25px;
+}
+
+#ward {
+  padding-right: 0px;
+  padding-top: 20px;
+  margin: 0;
+  align-content: center;
+  display: flex;
+}
+
+#ward > .col-8 {
+  padding-left: 0px;
+  /*padding-left: -10px;*/
+}
+
+#header-form-col {
+  border-right: 2px solid grey;
+}
+
+#submit-row {
+  margin: 0;
+  align-content: center;
+  display: flex;
+  padding-top: 20px;
+  padding-left: 60px;
+}
+
+#data {
+  padding-top: 20px;
+}
+
