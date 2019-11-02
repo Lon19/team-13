@@ -23,7 +23,7 @@ def create_json():
 	"""
 
 	colours_dict = {}
-	objects = get_data(["data 1.csv", "data 2.csv", "data 3.csv", "data 4.csv"])
+	objects = get_data(["data.csv"])
 
 	# Get list of GeoCodes
 	geo_code_list = []
