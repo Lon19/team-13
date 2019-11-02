@@ -14,9 +14,9 @@ def load_all():
 
         for i in range(4):
             if i != 0:
-                data = urllib.request.urlopen(url1).readlines()[1:]
+                data = urllib.request.urlopen(urls[i]).readlines()[1:]
             else:
-                data = urllib.request.urlopen(url1).readlines()
+                data = urllib.request.urlopen(urls[i]).readlines()
 
             for d in data:
                 f.write(d)
