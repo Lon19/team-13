@@ -10,7 +10,7 @@ def index(request):
 
 
 def submit(request):
-    with open('/Users/admin/Desktop/wards.json') as f:
+    with open('../../wards.json') as f:
       txt = f.read()
     text = json.loads(txt)
     wards = text["features"]
