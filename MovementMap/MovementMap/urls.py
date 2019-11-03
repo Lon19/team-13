@@ -22,7 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='ward_data'),
     path('submit', views.submit),
-    path('search/', views.search, name='search'),
-    path('search/submit', views.search_submit),
     path('', views.index, name='map'),
 ]

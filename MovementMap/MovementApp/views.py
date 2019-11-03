@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 # Create your views here.
 import json
-from name_dict import get_name_dict
+# from name_dict import get_name_dict
 
 dict = {'map': 'total'}
 
@@ -53,25 +53,25 @@ def submit(request):
     else:
         dict = {'map': 'total'}
 
-    return_dict = get_name_dict()
+    # return_dict = get_name_dict()
     # my_dict = {"ward_data": return_dict[ward_name]}
     return render(request, 'MovementApp/index.html', context=dict)
 
-
-def search_submit(request):
-    params = request.GET.get('ward-name', 'Failed')
-    print(params)
-    with open('result.json') as f:
-        txt = f.read()
-    text = json.loads(txt)
-    wards = text["features"]
-    l = []
-    for dic in wards:
-        new_dict = {"Name": dic["properties"]["wd16nm"], "ID": dic["properties"]["wd16cd"],
-                    "Coordinates": dic["geometry"]["coordinates"][0][0]}
-        l.append(new_dict)
-    # print(l)
-    my_dict = {'ward_data': [x for x in l if x['Name'] == params][0]}
-    print(my_dict)
-    return render(request, 'MovementApp/search.html', context=my_dict)
+#
+# def search_submit(request):
+#     params = request.GET.get('ward-name', 'Failed')
+#     print(params)
+#     with open('result.json') as f:
+#         txt = f.read()
+#     text = json.loads(txt)
+#     wards = text["features"]
+#     l = []
+#     for dic in wards:
+#         new_dict = {"Name": dic["properties"]["wd16nm"], "ID": dic["properties"]["wd16cd"],
+#                     "Coordinates": dic["geometry"]["coordinates"][0][0]}
+#         l.append(new_dict)
+#     # print(l)
+#     my_dict = {'ward_data': [x for x in l if x['Name'] == params][0]}
+#     print(my_dict)
+#     return render(request, 'MovementApp/search.html', context=my_dict)
 # submit(0)
